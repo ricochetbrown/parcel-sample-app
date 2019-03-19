@@ -15,34 +15,30 @@
 <body ng-app="main" layout-padding ng-controller="mainController as vm" ng-cloak>
 
     <md-content>
-        <p> True Evil is rampant in the land. Arthur represents the future of Britain, a promise of prosperity and
-            honor,
-            yet hidden among his brave warriors are Mordred's unscrupulous miniona.</p>
-        <p> The forces of Evil are few in number but have knowledge of each other and remain hidden from all but one
-            of
-            Arthur's servants. Merlin alone knows the agents of Evil, but he must speak of his only in riddles.If
-            his
-            true
-            identity is discovered all will be lost.</p>
-
+        <p>Sinister is rampant in the dev shop. Agile represents the future of software, a promise of
+            productivity, yet hidden among the eager engineers are Nerlin's devious developers.
+            These forces of Sinister are few in number but have knowledge of each other and
+            remain hidden from all but one of the engineers. The Duke alone knows the agents of
+            Sinister, but he must carefully hint at the truth. If his true identity is discovered all will
+            be lost.
+            </p>
         <p>
-            After all the players know their loyalty, the leader must ensure that all the Evil players know each
-            other
-            and
-            that Merlin knows all the Evil players by repeating the following script:
+            After all the players know their squad, the TO must ensure that all the Sinister players
+            know each other and the Duke knows all the Sinister players by repeating the
+            following script:
         </p>
     </md-content>
     <div layout layout-align="space-around start">
         <md-content>
-            <h2 class="md-headline">Loyal Servants of Arthur</h2>
+            <h2 class="md-headline"><md-icon>security</md-icon>Dexter</h2>
             <md-list>
-                <md-list-item ng-repeat="servant in vm.servants">{{servant}}</md-list-item>
+                <md-list-item ng-repeat="dev in vm.dexter">{{dev}}</md-list-item>
             </md-list>
         </md-content>
         <md-content>
-            <h2 class="md-headline">Minions of Mordred</h2>
+            <h2 class="md-headline">Sinister<md-icon>location_searching</md-icon></h2>
             <md-list>
-                <md-list-item ng-repeat="minion in vm.minions">{{minion}}</md-list-item>
+                <md-list-item ng-repeat="spy in vm.sinister">{{spy}}</md-list-item>
             </md-list>
         </md-content>
     </div>
