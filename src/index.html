@@ -5,13 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>The Sprint : A Sprint of Sprints</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="./base.css" />
+
 </head>
 
-<body ng-app="main">
-    <chart-header></chart-header>
+<body ng-app="main" layout="column" layout-padding ng-controller="mainController as vm">
+    <md-content>
+        <p> True Evil is rampant in the land. Arthur represents the future of Britain, a promise of prosperity and
+            honor,
+            yet hidden among his brave warriors are Mordred's unscrupulous miniona.</p>
+        <p> The forces of Evil are few in number but have knowledge of each other and remain hidden from all but one
+            of
+            Arthur's servants. Merlin alone knows the agents of Evil, but he must speak of his only in riddles.If
+            his
+            true
+            identity is discovered all will be lost.</p>
+
+        <p>
+            After all the players know their loyalty, the leader must ensure that all the Evil players know each
+            other
+            and
+            that Merlin knows all the Evil players by repeating the following script:
+        </p>
+    </md-content>
+    <md-content flex>
+        <md-list>
+            <md-list-item ng-repeat="step in vm.steps">
+                <p>{{step}}</p>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </body>
-<script src="./index.js"></script>
+<script src="./index.js">
+</script>
 
 </html>
