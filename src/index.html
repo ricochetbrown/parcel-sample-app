@@ -12,7 +12,8 @@
 
 </head>
 
-<body ng-app="main" layout="column" layout-padding ng-controller="mainController as vm">
+<body ng-app="main" layout-padding ng-controller="mainController as vm" ng-cloak>
+
     <md-content>
         <p> True Evil is rampant in the land. Arthur represents the future of Britain, a promise of prosperity and
             honor,
@@ -31,13 +32,29 @@
             that Merlin knows all the Evil players by repeating the following script:
         </p>
     </md-content>
-    <md-content flex>
+    <div layout layout-align="space-around start">
+        <md-content>
+            <h2 class="md-headline">Loyal Servants of Arthur</h2>
+            <md-list>
+                <md-list-item ng-repeat="servant in vm.servants">{{servant}}</md-list-item>
+            </md-list>
+        </md-content>
+        <md-content>
+            <h2 class="md-headline">Minions of Mordred</h2>
+            <md-list>
+                <md-list-item ng-repeat="minion in vm.minions">{{minion}}</md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+    <div>
+        <h2 class="md-headline">Night Phase</h2>
         <md-list>
             <md-list-item ng-repeat="step in vm.steps">
-                <p>{{step}}</p>
+                {{step}}
             </md-list-item>
         </md-list>
-    </md-content>
+    </div>
+
 </body>
 <script src="./index.js">
 </script>
