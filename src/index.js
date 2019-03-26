@@ -6,6 +6,7 @@ import player from './service/player-service';
 import card from './service/card-service';
 import cardService from './service/card-service';
 import { chmod } from 'fs';
+import gameService from './service/game-service';
 
 
 angular.module('main', [material,player.name,card.name]).controller('mainController', ['playerService','cardService',
@@ -18,7 +19,6 @@ angular.module('main', [material,player.name,card.name]).controller('mainControl
             playerService.create("Bart");
             playerService.create("Lisa");
             //the game will explode right now if you have more players than cards. it will get smart later.            
-            vm.start();
         
 
 
@@ -36,9 +36,16 @@ angular.module('main', [material,player.name,card.name]).controller('mainControl
         }
 
         vm.start = function(){
+            vm.$onInit();
             vm.cards = cardService.shuffle(); // shuffle // determine game size                
             playerService.deal(vm.cards);
             vm.players = playerService.getPlayers();
+            vm.nextRound();            
+        }
+
+        vm.nextRound = function(){
+            vm.leader = playerService.roundRobin();
+            //gameService.nextRound(); //move through user stories. in this service.
         }
     }
 ])

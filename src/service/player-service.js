@@ -17,9 +17,20 @@ export default angular.module('player',[]).service('playerService',function(){
     }
 
     service.deal = function(cards){
+        leader = null;
         players.forEach(function(p,i){            
             p.card = cards[i];
-        })
+        });
+    }
+    
+    service.roundRobin = function(){
+        //sucky logic. basically search so we don't need conditionals;    
+
+        var index = players.indexOf(leader);  
+        index  = index == players.length - 1 ? index = 0 : index;      
+        leader = players[index+=1];
+        console.log(index,leader.name);
+        return leader;
     }
 
     return service;

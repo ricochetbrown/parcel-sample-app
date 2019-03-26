@@ -9,8 +9,12 @@ export default angular.module('game',['player','card']).service('gameService',['
     service.initialize = function(){
         //start off with user stories hardcoded to 5
         //shuffle cards
-        cardService.shuffle();        
+              
         
+    }
+
+    service.nextRound = function(){
+
     }
 
     return service;

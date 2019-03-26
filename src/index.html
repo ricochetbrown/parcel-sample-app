@@ -28,12 +28,16 @@
             following script:
         </p>
     </md-content>
-    <md-button ng-click="vm.reshuffle();">reshuffle</md-button>
+    <md-toolbar class="md-toolbar-tools" layout-padding layout>
+        <md-button ng-click="vm.start();">reshuffle</md-button>
+        <md-button ng-click="vm.nextRound();">next round</md-button>
+    </md-toolbar>
     <div layout layout-align="space-around start">
         <md-content>
             <h2 class="md-headline"><md-icon>group</md-icon>Players</h2>
             <md-list>
-                <md-list-item ng-click="player.reveal = !player.reveal" ng-repeat="player in vm.players">{{player.name}}&nbsp;{{player.reveal ? player.card.name : '' }}</md-list-item>
+                <md-list-item ng-click="player.reveal = !player.reveal" ng-repeat="player in vm.players">
+                    <md-icon ng-show="player == vm.leader">label_important</md-icon>{{player.name}}&nbsp;{{player.reveal ? player.card.name : '' }}</md-list-item>
             </md-list>
         </md-content>             
     </div>
