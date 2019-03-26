@@ -2,34 +2,28 @@ import angular from 'angular';
 import material from 'angular-material';
 import 'angular-material/angular-material.css'
 
+import player from './service/player-service';
+import card from './service/card-service';
+import cardService from './service/card-service';
+import { chmod } from 'fs';
 
-angular.module('main', [material]).controller('mainController', [
-    function () {
+
+angular.module('main', [material,player.name,card.name]).controller('mainController', ['playerService','cardService',
+    function (playerService,cardService) {
         var vm = this;
         vm.$onInit = function () {
-            vm.dexter = [
-                "The Duke",
-                "Support Manager",
-                "Scrum Lord",
-                "Chicken Parm",
-                "IntelleWater",
-                "Level III Dev",
-                "Remote Dev I",
-                "Remote Dev II",
-                "Billy"
-            ]
+            playerService.create("Doug"); // simple names will be replaced by user accounts
+            playerService.create("Bob");
+            playerService.create("Homer");
+            playerService.create("Bart");
+            playerService.create("Lisa");
+            //the game will explode right now if you have more players than cards. it will get smart later.            
+            vm.start();
+        
 
-            vm.sinister = [
-                "Sniper",
-                "Nerlin",
-                "Dev Slayer",
-                "Village Idiot",
-                "Intern",
-                "Level II Dev",
-                "Max Level Dev",
-                "Remote Dev",
-                "Billy"
-            ]
+
+                   
+
             vm.steps = {
                 step_1: "Everyone close your eyes and extend your hand info a fist in front of you.",
                 step_2: "Sinister Spies open your eyes, lift your thumbs, and look around to identify your fellow squad mates",
@@ -39,6 +33,12 @@ angular.module('main', [material]).controller('mainController', [
                 step_6: "Close your eyes and lower your thumbs.",
                 step_7: "Everyone wake up."
             }
+        }
+
+        vm.start = function(){
+            vm.cards = cardService.shuffle(); // shuffle // determine game size                
+            playerService.deal(vm.cards);
+            vm.players = playerService.getPlayers();
         }
     }
 ])
