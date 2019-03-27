@@ -32,14 +32,27 @@
         <md-button ng-click="vm.start();">reshuffle</md-button>
         <md-button ng-click="vm.nextRound();">next round</md-button>
     </md-toolbar>
-    <div layout layout-align="space-around start">
-        <md-content>
-            <h2 class="md-headline"><md-icon>group</md-icon>Players</h2>
+    <div layout="row" layout-align="space-around start">
+        <div>
+            <h2 class="md-headline"><md-icon>peope_outline</md-icon>Players</h2>
             <md-list>
-                <md-list-item ng-click="player.reveal = !player.reveal" ng-repeat="player in vm.players">
-                    <md-icon ng-show="player == vm.leader">label_important</md-icon>{{player.name}}&nbsp;{{player.reveal ? player.card.name : '' }}</md-list-item>
+                <md-list-item ng-repeat="player in vm.players">
+                    <md-icon ng-show="player == vm.leader">label_important</md-icon>{{player.name}}&nbsp;{{player.reveal ? player.card.name : '' }}
+                    <md-button ng-click="vm.castVote(player);"><md-icon>{{player.approve ? 'thumb_up' : 'thumb_down'}}</md-icon></md-button>
+                    <md-button ng-click="vm.toggleTeam(player);"><md-icon>{{ player.included ? 'cancel' : 'person_add'}}</md-icon></md-button>
+                </md-list-item>
             </md-list>
-        </md-content>             
+        </div>    
+        <div>
+            <h2 class="md-headline"><md-icon>group</md-icon>Team</h2>
+            <md-list>
+                <md-list-item ng-repeat="member in vm.team">{{member.name}}</md-list-item>
+            </md-list>
+        </div>         
+    </div>
+    <div>
+        <md-button ng-click="vm.tabulateVotes();">Show Results</md-button>
+        <p>Team was : {{vm.planningPoker ? 'approved': 'rejected'}}</p>
     </div>
     <div>
         <h2 class="md-headline">Night Phase</h2>
