@@ -27,7 +27,7 @@ export default angular.module('player',[]).service('playerService',function(){
         //sucky logic. basically search so we don't need conditionals;    
 
         var index = players.indexOf(leader);  
-        index  = index == players.length - 1 ? index = 0 : index;      
+        index  = index == players.length - 1 ?  -1 : index;      
         leader = players[index+=1];
         console.log(index,leader.name);
         return leader;

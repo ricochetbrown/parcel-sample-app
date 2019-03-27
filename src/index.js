@@ -33,10 +33,10 @@ angular.module('main', [material,player.name,card.name]).controller('mainControl
                 step_6: "Close your eyes and lower your thumbs.",
                 step_7: "Everyone wake up."
             }
+            vm.start();
         }
 
         vm.start = function(){
-            vm.$onInit();
             vm.cards = cardService.shuffle(); // shuffle // determine game size                
             playerService.deal(vm.cards);
             vm.players = playerService.getPlayers();
