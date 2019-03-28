@@ -5,8 +5,8 @@ import 'angular-material/angular-material.css'
 import services from './service.module';
 
 
-angular.module('main', [material,services.name]).controller('mainController', ['playerService','cardService','gameService',
-    function (playerService,cardService,gameService) {
+angular.module('main', [material,services.name]).controller('mainController', ['playerService','cardService',
+    function (playerService,cardService) {
         var vm = this;
         vm.team = [];
         vm.$onInit = function () {
@@ -64,7 +64,7 @@ angular.module('main', [material,services.name]).controller('mainController', ['
 
         vm.tabulateVotes = function(){
             debugger;
-            vm.planningPoker = gameService.isApproved();
+            vm.planningPoker = playerService.isApproved();
         }
 
         vm.castVote = function(player) {
@@ -72,7 +72,7 @@ angular.module('main', [material,services.name]).controller('mainController', ['
         }
 
         vm.onTeam = function(player){
-            return gameService.team.indexOf(player) != -1;
+            return vm.team.indexOf(player) != -1;
         }
     }
 ])

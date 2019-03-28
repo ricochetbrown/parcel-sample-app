@@ -2,16 +2,13 @@ export default function(){
     var players = [];
     var leader = null;
     var service = {};
+    
     service.create = function(name){        
         players.push({name: name});
     }
 
     service.getPlayers = function(){
         return players;
-    }
-
-    service.setLeader = function(){
-
     }
 
     service.deal = function(cards){
@@ -30,6 +27,10 @@ export default function(){
         console.log(index,leader.name);
         return leader;
     }
+
+    service.isApproved = function(){
+        return players.filter(function(p) { return p.approve}).length > (players.length / 2);
+    }    
 
     return service;
 
