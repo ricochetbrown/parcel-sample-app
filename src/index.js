@@ -2,13 +2,10 @@ import angular from 'angular';
 import material from 'angular-material';
 import 'angular-material/angular-material.css'
 
-import player from './service/player-service';
-import card from './service/card-service';
-import cardService from './service/card-service';
-import game from './service/game-service';
+import services from './service.module';
 
 
-angular.module('main', [material,player.name,card.name,game.name]).controller('mainController', ['playerService','cardService','gameService',
+angular.module('main', [material,services.name]).controller('mainController', ['playerService','cardService','gameService',
     function (playerService,cardService,gameService) {
         var vm = this;
         vm.team = [];

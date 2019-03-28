@@ -1,6 +1,4 @@
-import angular from 'angular';
-
-export default angular.module('player',[]).service('playerService',function(){
+export default function(){
     var players = [];
     var leader = null;
     var service = {};
@@ -36,4 +34,4 @@ export default angular.module('player',[]).service('playerService',function(){
     return service;
 
 
-})
+}

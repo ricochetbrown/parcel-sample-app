@@ -1,13 +1,12 @@
-import angular from 'angular';
 
-function Card(name,type){
+export function Card(name,type){
     return {
         "name": name,
         "alignment": type
     }
 }
 
-export default angular.module('card',[]).service('cardService',[function(){
+export default function(){
     var service = {}
     var cards  = [];
 
@@ -81,4 +80,4 @@ export default angular.module('card',[]).service('cardService',[function(){
 
     return service;
 
-}])
+}
