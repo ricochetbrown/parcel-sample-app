@@ -26,7 +26,7 @@
             </h2>
             <md-list layout="column">
                 <md-list-item ng-repeat="player in vm.players" layout="row">
-                    <md-icon>{{ player.alignment == 'dexter' ? 'security' : 'gps_fixed'}}</md-icon>
+                    <md-icon>{{ player.card.alignment == 'dexter' ? 'security' : 'gps_fixed'}}</md-icon>
                     <span flex="shrink" class="md-body-1">{{player.card.name}}&nbsp;<span class="md-caption">({{player.name}})</span></span>
                 </md-list-item>
             </md-list>
