@@ -1,8 +1,10 @@
+import dukeService from './duke-service';
 
-export function Card(name,type){
+export function Card(name,type, knownToMeService){
     return {
         "name": name,
-        "alignment": type
+        "alignment": type,
+        "knownToMe": knownToMeService
     }
 }
 
@@ -36,26 +38,17 @@ export default function(){
     ]
 
     function initialize(){
-        //hard set to a 5 player game.
-        cards.push(new Card("The Duke", "dexter")); //create classes for these so they are types, and they can share information
-        cards.push(new Card("Sniper", "sinister")); //same here. something like dexter() and sinister() with variables holding know to them cardws
+        //hard set to a 7 player game.
+        cards.push(new Card("The Duke", "dexter", dukeService)); //create classes for these so they are types, and they can share information
         cards.push(new Card("Level III Dev","dexter"));
-        cards.push(new Card("Remote Dev I","dexter"));
-        cards.push(new Card("Chicken Parm","sinister"));
-
-    //   var a = dexter.map(function(d) {
-    //         return new Card(d,"dexter");
-    //     });
-    //    var b =  sinister.map(function(d) {
-    //         return new Card(d,"sinister");
-    //     })
-
-       // cards.concat(a,b);
+        cards.push(new Card("Support Manager","dexter"));
+        cards.push(new Card("Chicken Parm","dexter"));
+        cards.push(new Card("Sniper", "sinister")); //same here. something like dexter() and sinister() with variables holding know to them cardws
+        cards.push(new Card("Dev Slayer", "sinister"));
+        cards.push(new Card("Level II Dev", "sinister"));
     }
 
     initialize();
-
-   
 
     service.shuffle = function () {
         var currentIndex = cards.length, temporaryValue, randomIndex;

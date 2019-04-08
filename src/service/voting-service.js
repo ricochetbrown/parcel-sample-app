@@ -1,9 +1,18 @@
-import angular from 'angular';
+export function Votes(total, approves, rejects){
+    return {
+        "total": total,
+        "approves": approves,
+        "rejects": rejects
+    }
+}
 
 export default angular.module('voting',[]).service([function(){
-    var service = {}
+    var teamVotes = [];
+    var service = {};
    
-    service.approve()
+    service.approve = function () {
+        
+    }
 
     return service;   
 

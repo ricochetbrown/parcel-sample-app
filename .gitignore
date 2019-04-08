@@ -1,3 +1,11 @@
 node_modules
 .cache
 dist
+.idea/.idea.parcel-sample-app/riderModule.iml
+.idea/.idea.parcel-sample-app/.idea/contentModel.xml
+.idea/.idea.parcel-sample-app/.idea/encodings.xml
+.idea/.idea.parcel-sample-app/.idea/indexLayout.xml
+.idea/.idea.parcel-sample-app/.idea/misc.xml
+.idea/.idea.parcel-sample-app/.idea/modules.xml
+.idea/.idea.parcel-sample-app/.idea/vcs.xml
+.idea/.idea.parcel-sample-app/.idea/workspace.xml

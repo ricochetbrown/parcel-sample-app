@@ -4,22 +4,25 @@ import 'angular-material/angular-material.css'
 
 import services from './service.module';
 
-
-angular.module('main', [material,services.name]).controller('mainController', ['playerService','cardService',
-    function (playerService,cardService) {
+angular.module('main', [material,services.name]).controller('mainController', ['playerService','cardService','userStoryService',
+    function (playerService,cardService,userStoryService) {
         var vm = this;
         vm.team = [];
         vm.$onInit = function () {
             playerService.create("Doug"); // simple names will be replaced by user accounts
-            playerService.create("Bob");
-            playerService.create("Homer");
-            playerService.create("Bart");
-            playerService.create("Lisa");
-            //the game will explode right now if you have more players than cards. it will get smart later.            
-        
+            playerService.create("Nick");
+            playerService.create("Kevin");
+            playerService.create("Parm");
+            playerService.create("John");
+            playerService.create("Greg");
+            playerService.create("Mike");            
+            //the game will explode right now if you have more players than cards. it will get smart later.                            
 
-
-                   
+            userStoryService.create("OD-1", 2, 1);
+            userStoryService.create("OD-2", 3, 1);
+            userStoryService.create("OD-3", 3, 1);
+            userStoryService.create("OD-4", 4, 2);
+            userStoryService.create("OD-5", 4, 1);
 
             vm.steps = {
                 step_1: "Everyone close your eyes and extend your hand info a fist in front of you.",
@@ -30,6 +33,7 @@ angular.module('main', [material,services.name]).controller('mainController', ['
                 step_6: "Close your eyes and lower your thumbs.",
                 step_7: "Everyone wake up."
             }
+
             vm.start();
         }
 
@@ -37,11 +41,12 @@ angular.module('main', [material,services.name]).controller('mainController', ['
             vm.cards = cardService.shuffle(); // shuffle // determine game size                
             playerService.deal(vm.cards);
             vm.players = playerService.getPlayers();
+            vm.userStories = userStoryService.getUserStories();
+            vm.currentUserStory = userStoryService.getCurrent();
             vm.players.forEach(function(p){ //move this code to reset the players to the playerservice
                 p.approve = false;   
                 p.included = false;             
             })
-            vm.team = [];
             vm.nextRound();            
         }
 
@@ -50,15 +55,16 @@ angular.module('main', [material,services.name]).controller('mainController', ['
             //gameService.nextRound(); //move through user stories. in this service.
         }
 
-        vm.toggleTeam = function(player){            
-            var index = vm.team.indexOf(player);
+        vm.toggleTeam = function(player){   
+            vm.proposedTeam = vm.currentUserStory.team;
+            var index = vm.proposedTeam.indexOf(player);
             if(index > -1){
                 player.included = false;
-                vm.team.splice(index,1);
+                vm.proposedTeam.splice(index,1);
             }
-            else if(vm.team.length < 2){ //fix this to use a new TeamService.GetTeamSize(UserStory)
+            else if(vm.proposedTeam.length < 2){ //fix this to use a new TeamService.GetTeamSize(UserStory)
                 player.included = true;
-                vm.team.push(player);
+                vm.proposedTeam.push(player);
             }
         }
 
@@ -72,7 +78,12 @@ angular.module('main', [material,services.name]).controller('mainController', ['
         }
 
         vm.onTeam = function(player){
-            return vm.team.indexOf(player) != -1;
+            vm.proposedTeam = vm.currentUserStory.team;
+            return vm.proposedTeam.indexOf(player) != -1;
+        }
+
+        vm.doPullRequest = function (vote) {
+            userStoryService.commitVote(vote);
         }
     }
 ])
