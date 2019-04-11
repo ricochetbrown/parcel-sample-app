@@ -8,6 +8,7 @@ angular.module('main', [material,services.name]).controller('mainController', ['
     function (playerService,cardService,userStoryService) {
         var vm = this;
         vm.team = [];
+        vm.teamAgreedUpon = false;
         vm.$onInit = function () {
             playerService.create("Doug"); // simple names will be replaced by user accounts
             playerService.create("Nick");
@@ -75,6 +76,12 @@ angular.module('main', [material,services.name]).controller('mainController', ['
 
         vm.castVote = function(player) {
             player.approve = !player.approve;
+
+            var count = 0;
+            angular.forEach(vm.players, function (player) {
+                count += player.approve ? 1 : 0;
+            });
+            vm.teamAgreedUpon = count >= 4;
         }
 
         vm.onTeam = function(player){

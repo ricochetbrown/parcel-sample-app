@@ -68,14 +68,16 @@
             <md-list>
                 <md-list-item ng-repeat="member in vm.proposedTeam">
                     {{member.name}}
-                    <md-button ng-click="vm.doPullRequest(true)">Approve Changes</md-button>
-                    <md-button ng-click="vm.doPullRequest(false)">Request Changes</md-button>
+                    <md-button ng-show="vm.teamAgreedUpon" ng-click="vm.doPullRequest(true)">Approve Changes</md-button>
+                    <md-button ng-show="vm.teamAgreedUpon" ng-click="vm.doPullRequest(false)">Request Changes</md-button>
                 </md-list-item>
             </md-list>
+
+            <p>User Story was : {{vm.currentUserStory.result}}</p>
         </div>
     </div>
     <div>
-        <p>User Story was : {{vm.currentUserStory.result}}</p>
+        
     </div>
     <div>
         <h2 class="md-headline">Night Phase</h2>
