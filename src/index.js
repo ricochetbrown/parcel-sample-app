@@ -53,6 +53,11 @@ angular.module('main', [material,services.name]).controller('mainController', ['
 
         vm.nextRound = function(){                        
             vm.leader = playerService.roundRobin();
+            angular.forEach(vm.proposedTeam, function (player) {
+                player.approve = 0;
+            });
+
+            vm.proposedTeam = [];
             //gameService.nextRound(); //move through user stories. in this service.
         }
 
