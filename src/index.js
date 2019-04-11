@@ -89,7 +89,8 @@ angular.module('main', [material,services.name]).controller('mainController', ['
             return vm.proposedTeam.indexOf(player) != -1;
         }
 
-        vm.doPullRequest = function (vote) {
+        vm.doPullRequest = function (member, vote) {
+            member.currentPR = vote;
             userStoryService.commitVote(vote);
         }
     }
