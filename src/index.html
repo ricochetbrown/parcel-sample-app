@@ -6,88 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The Sprint : A Sprint of Sprints</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="./base.css" />
 
 </head>
 
 <body ng-app="main" layout-padding ng-controller="mainController as vm" ng-cloak>
-    <div>
-        <md-toolbar class="md-toolbar-tools" layout-padding layout>
-            <md-button ng-click="vm.start();">reshuffle</md-button>
-            <md-button ng-click="vm.nextRound();">next round</md-button>
-        </md-toolbar>
-    </div>
-    <div layout="row" layout-align="space-around start">
-        <div layout="column" layout-align="end center">
-            <h2 class="md-headline">
-                <md-icon>apps</md-icon>Cards
-            </h2>
-            <md-list layout="column">
-                <md-list-item ng-repeat="player in vm.players" layout="row">
-                    <md-icon>{{ player.card.alignment == 'dexter' ? 'security' : 'gps_fixed'}}</md-icon>
-                    <span flex="shrink" class="md-body-1">{{player.card.name}}&nbsp;<span class="md-caption">({{player.name}})</span></span>
-                </md-list-item>
-            </md-list>
-        </div>
-        <div layout="column" layout-align="end center">
-            <h2 class="md-headline">
-                <md-icon>people</md-icon>Players
-            </h2>
-            <md-list layout="column">
-                <md-list-item ng-repeat="player in vm.players" layout="row">
-                        <md-card>
-                                <md-card-title>
-                                  <md-card-title-text>
-                                    <span class="md-headline">{{player.name}}</span>
-                                    <span class="md-subhead" ng-show="player == vm.leader">
-                                            <md-icon>grade</md-icon>Team Owner
-                                    </span>                                    
-                                  </md-card-title-text>
-                                  <!-- <md-card-title-media>
-                                    <div class="md-media-sm card-media"></div>
-                                  </md-card-title-media> -->
-                                </md-card-title>
-                                <md-card-actions layout="row" layout-align="end center">
-                                        <md-button  ng-click="vm.castVote(player);">
-                                                Accept&nbsp;<md-icon>{{player.approve ? 'thumb_up' : 'thumb_down'}}</md-icon>
-                                            </md-button>
-                                            <md-button  ng-click="vm.toggleTeam(player);">
-                                                Add&nbsp;<md-icon>{{ player.included ? 'cancel' : 'person_add'}}</md-icon>
-                                            </md-button>         
-                                </md-card-actions>
-                              </md-card>                        
-                </md-list-item>
-            </md-list>
-        </div>
-        <div layout="column" layout-align="end center">
-            <h2 class="md-headline">
-                <md-icon>group_add</md-icon>Team
-            </h2>
-            <md-list>
-                <md-list-item ng-repeat="member in vm.proposedTeam">
-                    {{member.name}}
-                    <md-button ng-show="vm.teamAgreedUpon" ng-click="vm.doPullRequest(true)">Approve Changes</md-button>
-                    <md-button ng-show="vm.teamAgreedUpon" ng-click="vm.doPullRequest(false)">Request Changes</md-button>
-                </md-list-item>
-            </md-list>
-
-            <p>User Story was : {{vm.currentUserStory.result}}</p>
-        </div>
-    </div>
-    <div>
-        
-    </div>
-    <div>
-        <h2 class="md-headline">Night Phase</h2>
-        <md-list>
-            <md-list-item ng-repeat="step in vm.steps">
-                {{step}}
-            </md-list-item>
-        </md-list>
-    </div>
-
+    <div>The Sprint!</div>
 </body>
 <script src="./index.js">
 </script>

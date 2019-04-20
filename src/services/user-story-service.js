@@ -21,10 +21,6 @@ export default function(){
         return userStories;
     }   
 
-    service.getCurrent = function () {
-        return userStories[0];
-    }
-
     service.commitVote = function (vote) {
         userStories[0].votes.push(vote);
 

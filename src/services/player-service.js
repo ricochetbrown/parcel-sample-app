@@ -4,7 +4,7 @@ export default function(){
     var service = {};
     
     service.create = function(name){        
-        players.push({name: name});
+        players.push({name: name, pointing: [], pullRequests: []});
     }
 
     service.getPlayers = function(){

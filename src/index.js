@@ -4,8 +4,8 @@ import 'angular-material/angular-material.css'
 
 import services from './service.module';
 
-angular.module('main', [material,services.name]).controller('mainController', ['playerService','cardService','userStoryService',
-    function (playerService,cardService,userStoryService) {
+angular.module('main', [material,services.name]).controller('mainController', ['gameService','playerService','cardService','userStoryService',
+    function (gameService,playerService,cardService,userStoryService) {
         var vm = this;
         vm.team = [];
         vm.teamAgreedUpon = false;
@@ -19,23 +19,26 @@ angular.module('main', [material,services.name]).controller('mainController', ['
             playerService.create("Mike");            
             //the game will explode right now if you have more players than cards. it will get smart later.                            
 
+            // we will start with a static set of 7 cards
+            // eventually we will be able to add new cards and rules and let the users pick which ones
+            // go into the game they are playing
+            cardService.create("The Duke", 'Dexter');
+            cardService.create("Support Manager", 'Dexter');
+            cardService.create("Chicken Parm", 'Dexter');
+            cardService.create("Remote Dev", 'Dexter');
+            cardService.create("Nerlin", 'Sinister');
+            cardService.create("Sniper", 'Sinister');
+            cardService.create("Dev Slayer", 'Sinister');
+
+            // This will also have a set amount of user stories/requirements
+            // This will eventually be replaced by new game modes like OS or OU stories
             userStoryService.create("OD-1", 2, 1);
             userStoryService.create("OD-2", 3, 1);
             userStoryService.create("OD-3", 3, 1);
             userStoryService.create("OD-4", 4, 2);
             userStoryService.create("OD-5", 4, 1);
 
-            vm.steps = {
-                step_1: "Everyone close your eyes and extend your hand info a fist in front of you.",
-                step_2: "Sinister Spies open your eyes, lift your thumbs, and look around to identify your fellow squad mates",
-                step_3: "Sinister Spies, close your eyes and lower your thumbs.",
-                step_4: "Sinister Spies, lift your thumbs.",
-                step_5: "The Duke, open your eyes and make note of the Sinister Spies. Use your knowledge carefully to prevent them from closing too many Pull Requests",
-                step_6: "Close your eyes and lower your thumbs.",
-                step_7: "Everyone wake up."
-            }
-
-            vm.start();
+            gameService.start(playerService.getPlayers(), cardService.getCards(), userStoryService.getUserStories());
         }
 
         vm.start = function(){
