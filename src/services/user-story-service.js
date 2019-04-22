@@ -14,7 +14,7 @@ export default function(){
     // 6. result (e.g. closed)
     
     service.create = function(name, teamSize, failRequirements){        
-        userStories.push({name: name, teamSize: teamSize, failRequirements: failRequirements, team: [], votes: [], result: ""});
+        userStories.push({name: name, teamSize: teamSize, failRequirements: failRequirements, rejectedTeams: [], team: [], result: ""});
     }
 
     service.getUserStories = function(){

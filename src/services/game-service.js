@@ -5,11 +5,11 @@ export default function(){
     service.start = function (players, cards, userStories) {
         console.log('Starting the game');
         shuffle(cards);
-        console.log('Shuffled cards', cards);
+        console.log('Shuffle cards', cards);
         deal(players, cards);
-        console.log('Players w/ roles', players);
+        console.log('Assign cards to players', players);
         setTechnicalOwner(players);
-        console.log('First technical owner', players.filter(p => p.isTechnicalOwner)[0]);
+        console.log('Assign first technical owner', players.filter(p => p.isTechnicalOwner)[0]);
 
         //simulate going through user stories (controlled by user UI actions)
         userStories.forEach(function (u) {
@@ -55,7 +55,7 @@ export default function(){
     }
     function pointUserStory(userStory, players) {
         players.forEach(function (p) {
-            var points = true //Math.random() >= 0.5;
+            var points = Math.random() >= 0.5;
             point(p, userStory, points);
         });
     }
