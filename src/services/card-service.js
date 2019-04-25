@@ -1,48 +1,55 @@
-export function Card(name,type, knownToMeService){
+export function Card(name,type){
     return {
         "name": name,
-        "alignment": type,
-        "knownToMe": knownToMeService
+        "alignment": type
     }
 }
 
 export default function(){
-    var service = {}
     var cards  = [];
 
-    var alwaysInclude = [      
-    ]
+    var service = {};
 
-    var dexter = [
-        "Support Manager",
-        "Scrum Lord",
-        "Chicken Parm",
-        "IntelleWater",
-        "Level III Dev",
-        "Remote Dev I",
-        "Remote Dev II",
-        "Billy"
-    ]
+    service.setup = function () {
+        //Hard code the 7 cards used - this will be it's own thing later
+        create('The Duke', 'Dexter');
+        create('Support Manager', 'Dexter');
+        create('Chicken Parm', 'Dexter');
+        create('Intellewater', 'Dexter');
+        create('Nerlin', 'Sinister');
+        create('Sniper', 'Sinister');
+        create('Dev Slayer', 'Sinister');
+    }
 
-    var sinister = [        
-        "Nerlin",
-        "Dev Slayer",
-        "Village Idiot",
-        "Intern",
-        "Level II Dev",
-        "Max Level Dev",
-        "Remote Dev",
-        "Billy"
-    ]
-
-    service.create = function (role, alignment) {
+    function create(role, alignment) {
         cards.push(new Card(role, alignment));
     }
 
-    service.getCards = function(){
+    service.getCards = function () {
         return cards;
     }
 
-    return service;
+    service.shuffle = function () {
+        var currentIndex = cards.length, temporaryValue, randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = cards[currentIndex];
+          cards[currentIndex] = cards[randomIndex];
+          cards[randomIndex] = temporaryValue;
+        }
+    }
 
+    service.deal = function (players) {
+        players.forEach(function(p,i){            
+            p.card = cards[i];
+        });
+    }
+
+    return service;
 }

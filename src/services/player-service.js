@@ -1,38 +1,31 @@
 export default function(){
     var players = [];
-    var leader = null;
+
     var service = {};
+
+    service.setup = function () {
+        // Hard code setup to have 7 players -- will eventually get logged in users
+        create("Khbero"); 
+        create("Nick");
+        create("Kevin");
+        create("Parm");
+        create("Greg");
+        create("John");
+        create("Mike"); 
+    }
     
-    service.create = function(name){        
-        players.push({name: name, pointing: [], pullRequests: []});
+    function create(name) {        
+        players.push({name: name});
     }
 
-    service.getPlayers = function(){
+    service.getPlayers = function () {
         return players;
     }
 
-    service.deal = function(cards){
-        leader = null;
-        players.forEach(function(p,i){            
-            p.card = cards[i];
-        });
+    service.setInitialTechnicalOwner = function () {
+        var randomIndex = Math.floor(Math.random() * players.length);
+        players[randomIndex].isTechnicalOwner = true;
     }
-    
-    service.roundRobin = function(){
-        //sucky logic. basically search so we don't need conditionals;    
-
-        var index = players.indexOf(leader);  
-        index  = index == players.length - 1 ?  -1 : index;      
-        leader = players[index+=1];
-        console.log(index,leader.name);
-        return leader;
-    }
-
-    service.isApproved = function(){
-        return players.filter(function(p) { return p.approve}).length > (players.length / 2);
-    }    
 
     return service;
-
-
 }
