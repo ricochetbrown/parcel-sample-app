@@ -4,8 +4,8 @@ import 'angular-material/angular-material.css'
 
 import services from './service.module';
 
-angular.module('main', [material,services.name]).controller('mainController', ['gameService','playerService',
-    function (gameService,playerService) {
+angular.module('main', [material,services.name]).controller('mainController', ['gameService',
+    function (gameService) {
         var vm = this;
 
         vm.$onInit = function () { 
@@ -19,7 +19,7 @@ angular.module('main', [material,services.name]).controller('mainController', ['
             vm.users.push({name:'Nick'});
             
             console.log('Setting up the game');               
-            var gameInstance = gameService.setup(vm.users);
+            gameService.setup(vm.users);
             gameInstance.start();
             console.log('First Technical Owner', gameInstance.currentOwner);
             console.log('Players w/ shuffled cards', gameInstance.players);
