@@ -1,19 +1,39 @@
-export default function(playerService, cardService){
+export function GameInstance(players, cards){
+    this.players = players;
+    this.currentOwner = null;
+
+    this.start = function () {
+        this.setFirstOwner();
+        this.assignCards();
+    }
+
+    this.setFirstOwner = function () {
+        var randomIndex = Math.floor(Math.random() * this.players.length);
+        this.currentOwner = this.players[randomIndex];
+    }
+
+    this.assignCards = function () { 
+        this.players = this.players.sort(function () { return Math.random() - 0.5 });
+        this.players.forEach(function(p,i){            
+            p.card = cards[i];
+        });
+    }
+}
+
+export default function(cardService){
     var _players = [];
     var service = {};
 
-    service.setup = function () {
-        _players = playerService.getPlayers();
-        playerService.setInitialTechnicalOwner();
-        cardService.setup();
-        cardService.shuffle();
-    }
+    service.setup = function (users) {
+        // TODO: only get users not in game, whatevs
+        users.forEach(function (user) {
+            _players.push(user);
+        });
 
-    // start game
-    service.start = function () {
-        cardService.deal(_players);
-        console.log("Players dealt cards", _players);
-    }
+        cardService.setup();
+        var cards = cardService.shuffle();
+        return new GameInstance(_players, cards);
+    } 
     
     return service;
 }

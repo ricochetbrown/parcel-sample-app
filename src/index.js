@@ -8,14 +8,21 @@ angular.module('main', [material,services.name]).controller('mainController', ['
     function (gameService,playerService) {
         var vm = this;
 
-        vm.$onInit = function () {   
-            playerService.setup();    
+        vm.$onInit = function () { 
+            vm.users = [];
+            vm.users.push({name:'Parm'});
+            vm.users.push({name:'Kevin'});
+            vm.users.push({name:'John'});
+            vm.users.push({name:'Greg'});
+            vm.users.push({name:'Khbero'});
+            vm.users.push({name:'Mike'});
+            vm.users.push({name:'Nick'});
+            
             console.log('Setting up the game');               
-            gameService.setup();
-            console.log('Finished setting up the game');
-            console.log('Starting the game');
-            gameService.start();
-            console.log('Finished the game');
+            var gameInstance = gameService.setup(vm.users);
+            gameInstance.start();
+            console.log('First Technical Owner', gameInstance.currentOwner);
+            console.log('Players w/ shuffled cards', gameInstance.players);
         }
     }
 ])

@@ -25,10 +25,6 @@ export default function(){
         cards.push(new Card(role, alignment));
     }
 
-    service.getCards = function () {
-        return cards;
-    }
-
     service.shuffle = function () {
         var currentIndex = cards.length, temporaryValue, randomIndex;
       
@@ -43,12 +39,8 @@ export default function(){
           cards[currentIndex] = cards[randomIndex];
           cards[randomIndex] = temporaryValue;
         }
-    }
 
-    service.deal = function (players) {
-        players.forEach(function(p,i){            
-            p.card = cards[i];
-        });
+        return cards;
     }
 
     return service;
