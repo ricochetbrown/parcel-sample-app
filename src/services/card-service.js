@@ -8,7 +8,7 @@ export function Card(name,type){
 export default function(){
     var cards  = [];
 
-    var service = {};
+    var service = {};  
 
     service.setup = function () {
         //Hard code the 7 cards used - this will be it's own thing later
@@ -19,6 +19,7 @@ export default function(){
         create('Nerlin', 'Sinister');
         create('Sniper', 'Sinister');
         create('Dev Slayer', 'Sinister');
+
     }
 
     function create(role, alignment) {

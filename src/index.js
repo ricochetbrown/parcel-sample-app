@@ -8,6 +8,7 @@ angular.module('main', [material,services.name]).controller('mainController', ['
     function (gameService) {
         var vm = this;
 
+        vm.gameInstance;
         vm.$onInit = function () { 
             vm.users = [];
             vm.users.push({name:'Parm'});
@@ -19,7 +20,7 @@ angular.module('main', [material,services.name]).controller('mainController', ['
             vm.users.push({name:'Nick'});
             
             console.log('Setting up the game');               
-            gameService.setup(vm.users);
+            vm.gameInstance = gameService.setup(vm.users);
             gameInstance.start();
             console.log('First Technical Owner', gameInstance.currentOwner);
             console.log('Players w/ shuffled cards', gameInstance.players);
