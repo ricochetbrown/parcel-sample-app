@@ -9,18 +9,28 @@ export default function(cardService){
             _players.push(user);
         });
 
+        cardService.setup();
         cards = cardService.shuffle();
 
         return new GameInstance(_players, cards);
-    }
-
-    service.start = function () {
-        
     }
 
     return service;
 }
 
 function GameInstance(players, cards) {
-    console.log(players, cards);
+    this.currentOnwer = null;
+    this.players = players;
+
+    this.start = function () {
+        this.players = this.players.sort(function () { return Math.random() - 0.5 });
+
+        // assign first tech owner
+        this.currentOwner = this.players[0];
+
+        // associate players with cards
+        this.players.forEach(function (p, i) {
+            p.card = cards[i];
+        }); 
+    }
 }

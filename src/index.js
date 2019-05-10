@@ -21,9 +21,9 @@ angular.module('main', [material,services.name]).controller('mainController', ['
             
             console.log('Setting up the game');               
             vm.gameInstance = gameService.setup(vm.users);
-            gameInstance.start();
-            console.log('First Technical Owner', gameInstance.currentOwner);
-            console.log('Players w/ shuffled cards', gameInstance.players);
+            vm.gameInstance.start();
+            console.log('First Technical Owner', vm.gameInstance.currentOwner);
+            console.log('Players w/ shuffled cards', vm.gameInstance.players);
         }
     }
 ])

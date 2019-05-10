@@ -19,7 +19,6 @@ export default function(){
         create('Nerlin', 'Sinister');
         create('Sniper', 'Sinister');
         create('Dev Slayer', 'Sinister');
-
     }
 
     function create(role, alignment) {
