@@ -1,7 +1,8 @@
-export function Card(name,type){
+export function Card(name, type, knowledge) {
     return {
         "name": name,
-        "alignment": type
+        "alignment": type,
+        "knowledge": knowledge
     }
 }
 
@@ -22,6 +23,21 @@ export default function(){
     }
 
     function create(role, alignment) {
+        var knowledge = {};
+
+        if (role === "The Duke") {
+            knowledge.KnowsSinister = true;
+        } else if (role === "Support Manager") {
+            knowledge.SeesTheDuke = true;
+            knowledge.SeesDevSlayer = true;
+        } else if (role === "Nerlin") {
+            knowledge.KnowsSinister = true;
+        } else if (role === "Sniper") {
+            knowledge.KnowsSinister = true;
+        } else if (role === "Dev Slayer") {
+            knowledge.KnowsSinister = true;
+        }
+
         cards.push(new Card(role, alignment));
     }
 
