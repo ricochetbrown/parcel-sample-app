@@ -6,7 +6,7 @@ export function Card(name, type, knowledge) {
     }
 }
 
-export default function(){
+export default function(roleKnowledgeService){
     var cards  = [];
 
     var service = {};
@@ -23,22 +23,7 @@ export default function(){
     }
 
     function create(role, alignment) {
-        var knowledge = {};
-
-        if (role === "The Duke") {
-            knowledge.KnowsSinister = true;
-        } else if (role === "Support Manager") {
-            knowledge.SeesTheDuke = true;
-            knowledge.SeesDevSlayer = true;
-        } else if (role === "Nerlin") {
-            knowledge.KnowsSinister = true;
-        } else if (role === "Sniper") {
-            knowledge.KnowsSinister = true;
-        } else if (role === "Dev Slayer") {
-            knowledge.KnowsSinister = true;
-        }
-
-        cards.push(new Card(role, alignment));
+        cards.push(new Card(role, alignment, roleKnowledgeService.getKnowledge(role)));
     }
 
     service.shuffle = function () {
