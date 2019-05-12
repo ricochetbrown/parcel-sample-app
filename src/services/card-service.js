@@ -34,8 +34,10 @@ export default function(){
             knowledge.KnowsSinister = true;
         } else if (role === "Sniper") {
             knowledge.KnowsSinister = true;
+            knowledge.SeesNerline = true;
         } else if (role === "Dev Slayer") {
             knowledge.KnowsSinister = true;
+            knowledge.SeesNerlin = true;
         }
 
         cards.push(new Card(role, alignment, knowledge));
