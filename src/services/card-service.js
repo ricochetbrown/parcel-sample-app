@@ -38,7 +38,7 @@ export default function(){
             knowledge.KnowsSinister = true;
         }
 
-        cards.push(new Card(role, alignment));
+        cards.push(new Card(role, alignment, knowledge));
     }
 
     service.shuffle = function () {
