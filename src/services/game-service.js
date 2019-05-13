@@ -5,6 +5,7 @@ export function GameInstance(players, cards){
     this.start = function () {
         this.setFirstOwner();
         this.assignCards();
+        this.nightPhase();
     }
 
     this.setFirstOwner = function () {
@@ -14,8 +15,15 @@ export function GameInstance(players, cards){
 
     this.assignCards = function () { 
         this.players = this.players.sort(function () { return Math.random() - 0.5 });
-        this.players.forEach(function(p,i){            
+        this.players.forEach(function(p,i){ 
             p.card = cards[i];
+        });
+    }
+
+    this.nightPhase = function () {
+        var players = this.players;
+        this.players.forEach(function(p) {
+            p.knows = p.getKnown(players);
         });
     }
 }
@@ -30,7 +38,7 @@ export default function(cardService){
             _players.push(user);
         });
 
-        cardService.setup();
+        cardService.setup(); //use this set of cards
         var cards = cardService.shuffle();
         return new GameInstance(_players, cards);
     } 

@@ -1,4 +1,4 @@
-export function DukeKnowledge() {
+function DukeKnowledge() {
     return {
         'isMatch': function (role) {
             return role === 'The Duke';
@@ -10,7 +10,7 @@ export function DukeKnowledge() {
     }
 }
 
-export function SupportManagerKnowledge() {
+function SupportManagerKnowledge() {
     return {
         'isMatch': function (role) {
             return role === 'Support Manager';
@@ -22,7 +22,7 @@ export function SupportManagerKnowledge() {
     }
 }
 
-export function NerlinKnowledge() {
+function NerlinKnowledge() {
     return {
         'isMatch': function (role) {
             return role === 'Nerlin';
@@ -33,7 +33,7 @@ export function NerlinKnowledge() {
     }
 }
 
-export function SniperKnowledge() {
+function SniperKnowledge() {
     return {
         'isMatch': function (role) {
             return role === 'Sniper';
@@ -45,7 +45,7 @@ export function SniperKnowledge() {
     }
 }
 
-export function DevSlayerKnowledge() {
+function DevSlayerKnowledge() {
     return {
         'isMatch': function (role) {
             return role === 'Dev Slayer';
