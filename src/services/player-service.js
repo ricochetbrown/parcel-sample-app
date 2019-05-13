@@ -5,17 +5,29 @@ export function User(name) {
 export function Player(name) {
     User.call(this, name);
     this.card = {};
-    this.knows = [];
+    this.knowsAlignment = [];
+    this.knowsPotentialRoles = [];
 
-    this.getKnown = function (players) {
+    this.getKnownAlignment = function (players) {
         var card = this.card;
         var matches = players.filter(function(p){ 
-            var match = card.knows.filter(function (c) { 
-                return c == p.card.role 
+            var match = card.knowsAlignment.filter(function (c) { 
+                return p.card instanceof c
             });
             return match.length;
         });
         return matches.map(function(m){ return { player: m.name, alignment: m.card.alignment } });
+    }
+
+    this.getKnownPotentialRoles = function (players) {
+        var card = this.card;
+        var matches = players.filter(function(p){ 
+            var match = card.knowsPotentialRoles.filter(function (c) { 
+                return p.card instanceof c 
+            });
+            return match.length;
+        });
+        return matches.map(function(m){ return { player: m.name, potentialRoles: card.knowsPotentialRoles } });
     }
 }
 

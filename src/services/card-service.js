@@ -1,12 +1,41 @@
 export function Card(role, alignment) {   
     this.role = role;
     this.alignment = alignment;
-    this.knows = [];
+    this.knowsAlignment = [];
+    this.knowsPotentialRoles = [];
 }
 
 export function Duke() {
     Card.call(this, 'The Duke', 'Dexter');
-    this.knows = ['Sniper', 'Dev Slayer'];
+    this.knowsAlignment = [Sniper, DevSlayer];
+}
+
+export function Intellewater() {
+    Card.call(this, 'Intellewater', 'Dexter');
+}
+
+export function ChickenParm() {
+    Card.call(this, 'Chicken Parm', 'Dexter');
+}
+
+export function SupportManager() {
+    Card.call(this, 'Support Manager', 'Dexter');
+    this.knowsPotentialRoles = [Duke, DevSlayer]
+}
+
+export function Sniper() {
+    Card.call(this, 'Sniper', 'Sinister');
+    this.knowsAlignment = [DevSlayer, Nerlin];
+}
+
+export function DevSlayer() {
+    Card.call(this, 'Dev Slayer', 'Sinister');
+    this.knowsAlignment = [Sniper, Nerlin];
+}
+
+export function Nerlin() {
+    Card.call(this, 'Nerlin', 'Sinister');
+    this.knowsAlignment = [Sniper, DevSlayer];
 }
 
 export default function(roleKnowledgeService){
@@ -16,23 +45,18 @@ export default function(roleKnowledgeService){
     service.setup = function () {
         //Eventually we will use rules to determine which cards are in the game;
         var cardsInGameType = [
-            new Duke()
+            new Duke(),
+            new SupportManager(),
+            new Intellewater(),
+            new ChickenParm(),
+            new Nerlin(),
+            new Sniper(),
+            new DevSlayer()
         ]
 
         cardsInGameType.forEach(function (card) {
             cards.push(card);
         });
-
-        create('Intellewater', 'Dexter');
-        create('Support Manager', 'Dexter');
-        create('Chicken Parm', 'Dexter');
-        create('Nerlin', 'Sinister');
-        create('Sniper', 'Sinister');
-        create('Dev Slayer', 'Sinister');
-    }
-
-    function create(role, alignment) {
-        cards.push(new Card(role, alignment));
     }
 
     service.shuffle = function () {

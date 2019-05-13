@@ -23,7 +23,8 @@ export function GameInstance(players, cards){
     this.nightPhase = function () {
         var players = this.players;
         this.players.forEach(function(p) {
-            p.knows = p.getKnown(players);
+            p.knowsAlignment = p.getKnownAlignment(players);
+            p.knowsPotentialRoles = p.getKnownPotentialRoles(players);
         });
     }
 }
