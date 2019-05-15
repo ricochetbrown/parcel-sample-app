@@ -1,14 +1,15 @@
+import { Duke } from "./card-service";
+
 export function User(name) {
     this.name = name;
 }
 
 export function Player(name) {
     User.call(this, name);
-    this.card = {};
-    this.knowsAlignment = [];
-    this.knowsPotentialRoles = [];
+    this.sinister = []; //prepopulated
+    this.dexter = [];
 
-    this.getKnownAlignment = function (players) {
+    this.getKnownAlignment = function (players, known) {
         var card = this.card;
         var matches = players.filter(function(p){ 
             var match = card.knowsAlignment.filter(function (c) { 
@@ -16,19 +17,19 @@ export function Player(name) {
             });
             return match.length;
         });
-        return matches.map(function(m){ return { player: m.name, alignment: m.card.alignment } });
+        return matches.map(function(m){ return { player: m.name } });
     }
 
-    this.getKnownPotentialRoles = function (players) {
-        var card = this.card;
-        var matches = players.filter(function(p){ 
-            var match = card.knowsPotentialRoles.filter(function (c) { 
-                return p.card instanceof c 
-            });
-            return match.length;
-        });
-        return matches.map(function(m){ return { player: m.name, potentialRoles: card.knowsPotentialRoles } });
-    }
+    // this.getKnownPotentialRoles = function (players) {
+    //     var card = this.card;
+    //     var matches = players.filter(function(p){ 
+    //         var match = card.knowsPotentialRoles.filter(function (c) { 
+    //             return p.card instanceof c 
+    //         });
+    //         return match.length;
+    //     });
+    //     return matches.map(function(m){ return { player: m.name, potentialRoles: card.knowsPotentialRoles } });
+    // }
 }
 
 export default function(){

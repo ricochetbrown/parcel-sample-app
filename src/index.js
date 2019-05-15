@@ -18,12 +18,32 @@ angular.module('main', [material,services.name]).controller('mainController', ['
             vm.users.push(new Player('Khbero'));
             vm.users.push(new Player('Mike'));
             vm.users.push(new Player('Nick'));
+
+            vm.me = vm.users[0];
             
             console.log('Setting up the game');               
             var gameInstance = gameService.setup(vm.users);
             gameInstance.start();
             console.log('First Technical Owner', gameInstance.currentOwner);
             console.log('Players w/ shuffled cards', gameInstance.players);
+
+            console.log('Parm character', vm.me);
+
+            //given player return the stuff I can see
+
+            // var data = gameInstance.getPlayers(me); //me is a player
+
+            // //data = {
+            //     sinister: [],
+            //     dexter: [],
+            //     characters: {
+            //         duke: [player1, player2],
+            //         sniper: [player3,player4]
+            //     }
+            // }
+
+
+
         }
     }
 ])

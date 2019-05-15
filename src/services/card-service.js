@@ -8,6 +8,14 @@ export function Card(role, alignment) {
 export function Duke() {
     Card.call(this, 'The Duke', 'Dexter');
     this.knowsAlignment = [Sniper, DevSlayer];
+
+    this.isApproved = function(character){
+       character.alignment == "Sinister" && !character instanceof Nerlin //this line is !!notbad
+    }
+
+    this.revealAlignment = function () {
+
+    }
 }
 
 export function Intellewater() {
@@ -30,30 +38,43 @@ export function Sniper() {
 
 export function DevSlayer() {
     Card.call(this, 'Dev Slayer', 'Sinister');
-    this.knowsAlignment = [Sniper, Nerlin];
+
+    this.revealRole = function (character) {
+        if (character instanceof SupportManager) {
+            return this.role;
+        }
+    }
+
+    this.revealAlignment = function (character) {
+        if (character.isApproved(this)) {
+            return this.alignment;
+        }
+    }
+}
+
+export function Intern() {
+    Card.call(this, 'Intern', 'Sinister');
+    this.isApproved = function(character){
+        return character instanceof Nerlin;
+    }
 }
 
 export function Nerlin() {
     Card.call(this, 'Nerlin', 'Sinister');
-    this.knowsAlignment = [Sniper, DevSlayer];
+    this.knows = [Sniper, DevSlayer];
+    
+}
+
+export function SuperNerlin() {
+    Nerlin.call(this, "SuperNerlin", 'Dexter');
+    this.knowsAlignment.push(Duke);
 }
 
 export default function(roleKnowledgeService){
     var cards  = [];
     var service = {};   
 
-    service.setup = function () {
-        //Eventually we will use rules to determine which cards are in the game;
-        var cardsInGameType = [
-            new Duke(),
-            new SupportManager(),
-            new Intellewater(),
-            new ChickenParm(),
-            new Nerlin(),
-            new Sniper(),
-            new DevSlayer()
-        ]
-
+    service.setup = function (cardsInGameType) {
         cardsInGameType.forEach(function (card) {
             cards.push(card);
         });

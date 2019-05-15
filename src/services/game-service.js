@@ -23,8 +23,8 @@ export function GameInstance(players, cards){
     this.nightPhase = function () {
         var players = this.players;
         this.players.forEach(function(p) {
-            p.knowsAlignment = p.getKnownAlignment(players);
-            p.knowsPotentialRoles = p.getKnownPotentialRoles(players);
+            p.sinister = p.getKnownAlignment(players);
+            //p.knowsPotentialRoles = p.getKnownPotentialRoles(players);
         });
     }
 }
@@ -39,7 +39,16 @@ export default function(cardService){
             _players.push(user);
         });
 
-        cardService.setup(); //use this set of cards
+        var cardsInGameType = [
+            new Duke(),
+            new SupportManager(),
+            new Intellewater(),
+            new ChickenParm(),
+            new Nerlin(),
+            new Sniper(),
+            new DevSlayer()
+        ]
+        cardService.setup(cardsInGameType); //use this set of cards
         var cards = cardService.shuffle();
         return new GameInstance(_players, cards);
     } 
